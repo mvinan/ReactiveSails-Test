@@ -33,9 +33,9 @@ module.exports.views = {
   engine: {
     ext: 'jsx',
     fn: require('express-react-views').createEngine({
-        jsx: { harmony: true },
-        beautify: true
-      })
+      jsx: { harmony: true },
+      beautify: true
+    })
   },
 
 

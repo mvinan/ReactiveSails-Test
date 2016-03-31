@@ -35,11 +35,14 @@ module.exports.routes = {
   '/': {
     view: 'index'
   },
-  '/patient/signin':{
-    controller: "PatientController",
-    action: "new"
+  '/app':{
+    view: 'app/app'
   }
 
+  // '/patient/signin':{
+  //   controller: "PatientController",
+  //   action: "new"
+  // }
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

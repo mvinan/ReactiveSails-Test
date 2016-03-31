@@ -276,7 +276,112 @@ module.exports = function(grunt) {
       files: {
         'views/**/*.jade': ['.tmp/public/jst.js']
       }
-    }
+    },
+
+    //React jsx injected
+    devJsReact: {
+      options: {
+        startTag: '{/*SCRIPTS*/}',
+        endTag: '{/*SCRIPTS END*/}',
+        fileTmpl: '<script type="text/javascript" src="%s"></script>',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jsx': require('../pipeline').jsFilesToInject
+      }
+    },
+
+    devJsRelativeReact: {
+      options: {
+        startTag: '{/*SCRIPTS*/}',
+        endTag: '{/*SCRIPTS END*/}',
+        fileTmpl: '<script type="text/javascript" src="%s"></script>',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jsx': require('../pipeline').jsFilesToInject
+      }
+    },
+
+    prodJsReact: {
+      options: {
+        startTag: '{/*SCRIPTS*/}',
+        endTag: '{/*SCRIPTS END*/}',
+        fileTmpl: '<script type="text/javascript" src="%s"></script>',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jsx': ['.tmp/public/min/production.min.js']
+      }
+    },
+
+    prodJsRelativeReact: {
+      options: {
+        startTag: '{/*SCRIPTS*/}',
+        endTag: '{/*SCRIPTS END*/}',
+        fileTmpl: '<script type="text/javascript" src="%s"></script>',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jsx': ['.tmp/public/min/production.min.js']
+      }
+    },
+
+    /*
+     * Styles injected ReactJs
+     */
+    devStylesReact: {
+      options: {
+        startTag: '{/*STYLES*/}',
+        endTag: '{/*STYLES END*/}',
+        fileTmpl: '<link rel="stylesheet" href="%s" />',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jsx': require('../pipeline').cssFilesToInject
+      }
+    },
+
+    devStylesRelativeReact: {
+      options: {
+        startTag: '{/*STYLES*/}',
+        endTag: '{/*STYLES END*/}',
+        fileTmpl: '<link rel="stylesheet" href="%s" />',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jsx': require('../pipeline').cssFilesToInject
+      }
+    },
+
+    prodStylesReact: {
+      options: {
+        startTag: '{/*STYLES*/}',
+        endTag: '{/*STYLES END*/}',
+        fileTmpl: '<link rel="stylesheet" href="%s" />',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jsx': ['.tmp/public/min/production.min.js']
+      }
+    },
+
+    prodStylesRelativeReact: {
+      options: {
+        startTag: '{/*STYLES*/}',
+        endTag: '{/*STYLES END*/}',
+        fileTmpl: '<link rel="stylesheet" href="%s" />',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jsx': ['.tmp/public/min/production.min.js']
+      }
+    },
+
   });
 
   grunt.loadNpmTasks('grunt-sails-linker');
