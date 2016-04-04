@@ -34,14 +34,11 @@ module.exports.routes = {
 
   '/': {
     view: 'index'
-  },
-  '/app':{
-    view: 'app/app'
   }
-
-  // '/patient/signin':{
+  //
+  // '/patients/create':{
   //   controller: "PatientController",
-  //   action: "new"
+  //   action: "create"
   // }
   /***************************************************************************
   *                                                                          *

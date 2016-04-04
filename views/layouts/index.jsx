@@ -12,18 +12,21 @@ export default class Layout extends React.Component{
       <html lang="es">
         <head>
           <meta charSet="UTF-8"/>
-          <title>Steticorp - {this.props.title}</title>
+          <title>{this.props.title}</title>
           {/*STYLES*/}
+          <link rel="stylesheet" href="/styles/semantic.min.css" />
           <link rel="stylesheet" href="/styles/styles.css" />
           {/*STYLES END*/}
         </head>
-        <body>
+        <body className={this.props.bodyClass}>
 
           {this.props.children}
 
           {this.developmentScript}
           {/*SCRIPTS*/}
           <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+          <script type="text/javascript" src="/js/dependencies/jquery.min.js"></script>
+          <script type="text/javascript" src="/js/mediumDependencies/semantic.min.js"></script>
           <script type="text/javascript" src="/js/bundle.js"></script>
           {/*SCRIPTS END*/}
         </body>

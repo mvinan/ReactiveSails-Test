@@ -34,7 +34,7 @@ var src = {
 
 // Input file.
 watchify.args.debug = true;
-var bundler = watchify(browserify('./app/app.js', watchify.args));
+var bundler = watchify(browserify('./app/render.js', watchify.args));
 
 // Babel transform
 bundler.transform(babelify.configure({
@@ -117,9 +117,9 @@ gulp.task('styles', function() {
  */
 
 gulp.task('inject:sass', function () {
-  var target = gulp.src('src/importer.sass');
+  var target = gulp.src('app/importer.sass');
   // It's not necessary to read the files (will speed up things), we're only after their paths:
-  var sources = gulp.src(['app/**/*.sass','app/**/*.scss'], {read: false});
+  var sources = gulp.src(['!app/importer.sass','app/**/*.sass','app/**/*.scss'], {read: false});
 
   gutil.log(
     '\n'+gutil.colors.yellow('            Inject Sass files…' )
