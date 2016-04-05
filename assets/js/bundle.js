@@ -53,99 +53,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var Form = (function (_React$Component) {
-  _inherits(Form, _React$Component);
-
-  function Form(props) {
-    _classCallCheck(this, Form);
-
-    _get(Object.getPrototypeOf(Form.prototype), 'constructor', this).call(this, props);
-    this.state = { data: [] };
-  }
-
-  _createClass(Form, [{
-    key: 'changeState',
-    value: function changeState() {
-      var $inputs = (0, _jquery2['default'])('#form').find('input');
-
-      var inputsName = {};
-      _jquery2['default'].each($inputs, function (index, value) {
-        var attrName = (0, _jquery2['default'])(value).attr('name');
-        var inputValue = (0, _jquery2['default'])(value).val();inputsName[attrName] = inputValue;
-      });
-
-      this.setState({ data: inputsName });
-    }
-  }, {
-    key: 'onSubmit',
-    value: function onSubmit(e) {
-      e.preventDefault();
-
-      function clearInputs(form) {
-        form.each(function () {
-          this.reset();
-        });
-      }
-
-      var url = this.props.url;
-      var $form = (0, _jquery2['default'])('#form');
-
-      var data = this.state.data;
-
-      _jquery2['default'].post(url, data).success(function (res) {
-        clearInputs($form);
-        console.log(res);
-      }).error(function (XMLHttpRequest, textStatus, errorThrown) {});
-      this.setState({ data: [] });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'form',
-        _extends({}, this.props, {
-          onSubmit: this.onSubmit.bind(this),
-          id: 'form',
-          onChange: this.changeState.bind(this)
-        }),
-        this.props.children
-      );
-    }
-  }]);
-
-  return Form;
-})(_react2['default'].Component);
-
-exports['default'] = Form;
-module.exports = exports['default'];
-
-},{"jquery":57,"react":222}],3:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _reactRouter = require('react-router');
 
 var Menu = (function (_Component) {
@@ -223,7 +130,102 @@ var NavLink = (function (_Component3) {
 
 exports.NavLink = NavLink;
 
-},{"react":222,"react-router":87}],4:[function(require,module,exports){
+},{"react":222,"react-router":87}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var Modal = (function (_Component) {
+  _inherits(Modal, _Component);
+
+  function Modal(props) {
+    _classCallCheck(this, Modal);
+
+    _get(Object.getPrototypeOf(Modal.prototype), 'constructor', this).call(this, props);
+    this.state = { isRender: this.props.isOpen };
+  }
+
+  _createClass(Modal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.$('#formNewPatient').modal({ detachable: false }).modal('setting', 'closable', false).modal('show');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (this.props.isOpen) {
+        return _react2['default'].createElement(
+          'div',
+          { className: 'ui basic modal', id: 'formNewPatient' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'header' },
+            'Genial, paciente nuevo!'
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'image content' },
+            _react2['default'].createElement(
+              'div',
+              { className: 'image' },
+              _react2['default'].createElement('i', { className: 'archive icon' })
+            ),
+            _react2['default'].createElement(
+              'div',
+              { className: 'description' },
+              _react2['default'].createElement(
+                'h3',
+                null,
+                this.props.dataState.name,
+                ' ',
+                this.props.dataState.lastName
+              ),
+              _react2['default'].createElement(
+                'small',
+                null,
+                'Se ha creado exitosamente!'
+              )
+            )
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: 'actions' },
+            _react2['default'].createElement(
+              'button',
+              { className: 'ui green basic button', onClick: this.props.closeModalClick },
+              'Ok, gracias!'
+            )
+          )
+        );
+      } else {
+        return null;
+      }
+    }
+  }]);
+
+  return Modal;
+})(_react.Component);
+
+exports['default'] = Modal;
+module.exports = exports['default'];
+
+},{"react":222}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -344,7 +346,7 @@ var Layout = (function (_Component) {
 exports['default'] = Layout;
 module.exports = exports['default'];
 
-},{"../../components/Menu":3,"../Home":4,"react":222,"react-router":87}],6:[function(require,module,exports){
+},{"../../components/Menu":2,"../Home":4,"react":222,"react-router":87}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -365,11 +367,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _componentsForm = require('../../components/Form');
+var _componentsModal = require('../../components/Modal');
 
-var _componentsForm2 = _interopRequireDefault(_componentsForm);
-
-// import Modal from '../../components/Modal'
+var _componentsModal2 = _interopRequireDefault(_componentsModal);
 
 var _jquery = require('jquery');
 
@@ -416,23 +416,70 @@ exports['default'] = NewPacient;
 var FormNewPatient = (function (_Component2) {
   _inherits(FormNewPatient, _Component2);
 
-  function FormNewPatient() {
+  function FormNewPatient(props) {
     _classCallCheck(this, FormNewPatient);
 
-    _get(Object.getPrototypeOf(FormNewPatient.prototype), 'constructor', this).apply(this, arguments);
+    _get(Object.getPrototypeOf(FormNewPatient.prototype), 'constructor', this).call(this, props);
+    this.state = { isModalOpen: false, data: [] };
   }
 
   _createClass(FormNewPatient, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      window.$('.ui.basic.modal').modal('show');
+    key: 'openModal',
+    value: function openModal() {
+      this.setState({ isModalOpen: true });
+    }
+  }, {
+    key: 'closeModal',
+    value: function closeModal() {
+      var $form = (0, _jquery2['default'])('#form');
+
+      function clearInputs(form) {
+        form.each(function () {
+          this.reset();
+        });
+      }
+      this.setState({ isModalOpen: false });
+      window.$('#formNewPatient').modal('hide');
+      clearInputs($form);
+      this.setState({ data: '' });
+    }
+  }, {
+    key: 'changeDataState',
+    value: function changeDataState() {
+      var $inputs = (0, _jquery2['default'])('#form').find('input');
+
+      var inputsName = {};
+      _jquery2['default'].each($inputs, function (index, value) {
+        var attrName = (0, _jquery2['default'])(value).attr('name');
+        var inputValue = (0, _jquery2['default'])(value).val();
+        inputsName[attrName] = inputValue;
+      });
+
+      this.setState({ data: inputsName });
+    }
+  }, {
+    key: 'pullData',
+    value: function pullData(e) {
+      var _this = this;
+
+      e.preventDefault();
+
+      var url = this.props.url;
+
+      var data = this.state.data;
+
+      _jquery2['default'].post(url, data).success(function (res) {
+        _this.openModal();
+      }).error(function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log('no se pudo hacer el envío');
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
-        _componentsForm2['default'],
-        { url: this.props.url, className: 'ten wide column' },
+        'form',
+        { className: 'ten wide column', onSubmit: this.pullData.bind(this), onChange: this.changeDataState.bind(this), id: 'form' },
         _react2['default'].createElement(
           'div',
           { className: 'ui form', id: 'picture' },
@@ -476,11 +523,15 @@ var FormNewPatient = (function (_Component2) {
             _react2['default'].createElement('input', { type: 'email', placeholder: 'paciente@steticorp.com', name: 'email' })
           ),
           _react2['default'].createElement(
-            'a',
-            { onClick: this.handleClick.bind(this), className: 'ui button olive' },
+            'button',
+            { type: 'submit', className: 'ui button olive' },
             'Crear nuevo paciente'
           ),
-          _react2['default'].createElement(Modal, null)
+          this.state.isModalOpen ? _react2['default'].createElement(_componentsModal2['default'], {
+            isOpen: this.state.isModalOpen,
+            closeModalClick: this.closeModal.bind(this),
+            dataState: this.state.data
+          }) : null
         )
       );
     }
@@ -491,113 +542,7 @@ var FormNewPatient = (function (_Component2) {
 
 exports.FormNewPatient = FormNewPatient;
 
-var ButtonModal = (function (_Component3) {
-  _inherits(ButtonModal, _Component3);
-
-  function ButtonModal(props) {
-    _classCallCheck(this, ButtonModal);
-
-    _get(Object.getPrototypeOf(ButtonModal.prototype), 'constructor', this).call(this, props);
-    this.state = { showModal: false };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  _createClass(ButtonModal, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.setState({ showModal: true });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(
-          'button',
-          { onClick: this.handleClick, className: 'ui button ' + (this.props.color || "olive") },
-          'Crea un nuevo cliente'
-        ),
-        this.state.showModal ? _react2['default'].createElement(Modal, null) : null
-      );
-    }
-  }]);
-
-  return ButtonModal;
-})(_react.Component);
-
-var Modal = (function (_Component4) {
-  _inherits(Modal, _Component4);
-
-  function Modal(props) {
-    _classCallCheck(this, Modal);
-
-    _get(Object.getPrototypeOf(Modal.prototype), 'constructor', this).call(this, props);
-    this.state = { render: true };
-  }
-
-  _createClass(Modal, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      window.$('.ui.modal').modal({ detachable: false });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'ui basic modal' },
-        _react2['default'].createElement('i', { className: 'close icon' }),
-        _react2['default'].createElement(
-          'div',
-          { className: 'header' },
-          'Archive Old Messages'
-        ),
-        _react2['default'].createElement(
-          'div',
-          { className: 'image content' },
-          _react2['default'].createElement(
-            'div',
-            { className: 'image' },
-            _react2['default'].createElement('i', { className: 'archive icon' })
-          ),
-          _react2['default'].createElement(
-            'div',
-            { className: 'description' },
-            _react2['default'].createElement(
-              'p',
-              null,
-              'Your inbox is getting full, would you like us to enable automatic archiving of old messages?'
-            )
-          )
-        ),
-        _react2['default'].createElement(
-          'div',
-          { className: 'actions' },
-          _react2['default'].createElement(
-            'div',
-            { className: 'two fluid ui inverted buttons' },
-            _react2['default'].createElement(
-              'div',
-              { className: 'ui red basic inverted button close' },
-              _react2['default'].createElement('i', { className: 'remove icon' }),
-              'No'
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return Modal;
-})(_react.Component);
-
-/*<button type="submit" className="ui green basic inverted button">
- <i className="checkmark icon"></i>
- Yes
-</button>*/
-
-},{"../../components/Form":2,"jquery":57,"react":222}],7:[function(require,module,exports){
+},{"../../components/Modal":3,"jquery":57,"react":222}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {

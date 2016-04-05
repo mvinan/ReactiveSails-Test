@@ -14,7 +14,8 @@ export default class Form extends React.Component{
       var inputsName = {}
       $.each($inputs,(index, value)=>{
         var attrName = $(value).attr('name');
-        var inputValue = $(value).val();        inputsName[attrName] = inputValue
+        var inputValue = $(value).val();
+        inputsName[attrName] = inputValue
       })
 
       this.setState({data: inputsName})
@@ -38,7 +39,7 @@ export default class Form extends React.Component{
     $.post(url, data)
     .success(function(res){
       clearInputs($form)
-      console.log(res);
+      window.$('#formNewPatient').modal('show');
     })
     .error(function(XMLHttpRequest, textStatus, errorThrown){
     })

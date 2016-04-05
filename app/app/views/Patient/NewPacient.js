@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import Form, {InputContainer} from '../../components/Form'
-// import Modal from '../../components/Modal'
+import Modal from '../../components/Modal'
 import $ from 'jquery'
 
 
@@ -19,12 +18,60 @@ export default class NewPacient extends Component{
 
 
 export class FormNewPatient extends Component{
-  handleClick(){
-    window.$('.ui.basic.modal').modal('show');
+  constructor(props){
+    super(props)
+    this.state= {isModalOpen: false, data: []}
   }
+  openModal(){
+    this.setState({isModalOpen: true})
+  }
+  closeModal(){
+    var $form = $('#form')
+
+    function clearInputs(form){
+      form.each(function(){
+        this.reset();
+      })
+    }
+    this.setState({isModalOpen: false})
+    window.$('#formNewPatient').modal('hide');
+    clearInputs($form)
+    this.setState({data: ''})
+  }
+
+  changeDataState(){
+      var $inputs = $('#form').find('input')
+
+      var inputsName = {}
+      $.each($inputs,(index, value)=>{
+        var attrName = $(value).attr('name');
+        var inputValue = $(value).val();
+        inputsName[attrName] = inputValue
+      })
+
+      this.setState({data: inputsName})
+  }
+
+  pullData(e){
+    e.preventDefault();
+
+    var url = this.props.url
+
+
+    var data = this.state.data
+
+    $.post(url, data)
+    .success((res)=>{
+      this.openModal()
+    })
+    .error(function(XMLHttpRequest, textStatus, errorThrown){
+      console.log('no se pudo hacer el envío');
+    })
+  }
+
   render(){
     return(
-      <Form url={this.props.url} className="ten wide column">
+      <form className="ten wide column" onSubmit={this.pullData.bind(this)} onChange={this.changeDataState.bind(this)} id="form">
         <div className="ui form" id="picture">
           <h4 className="ui dividing header">Información personal del paciente</h4>
 
@@ -42,78 +89,17 @@ export class FormNewPatient extends Component{
             <label>E-mail</label>
             <input type="email" placeholder="paciente@steticorp.com" name="email"/>
           </div>
-          <a onClick={this.handleClick.bind(this)} className="ui button olive">Crear nuevo paciente</a>
-          <Modal/>
-        </div>
-      </Form>
-    )
-  }
-}
-
-
-class ButtonModal extends Component{
-  constructor(props){
-    super(props)
-    this.state = { showModal : false}
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(){
-    this.setState({showModal: true})
-  }
-
-  render(){
-    return(<div>
-          <button onClick={this.handleClick} className={`ui button ${this.props.color || "olive"}`}>Crea un nuevo cliente</button>
+          <button type="submit" className="ui button olive">Crear nuevo paciente</button>
           {
-            this.state.showModal ?
-            <Modal /> :
-            null
-
+            this.state.isModalOpen ?
+              <Modal
+              isOpen={this.state.isModalOpen}
+              closeModalClick={this.closeModal.bind(this)}
+              dataState={this.state.data}
+              /> : null
           }
-    </div>
-  )
-}
-}
-
-
-class Modal extends Component{
-  constructor(props){
-    super(props)
-    this.state = { render: true}
-  }
-
-  componentDidMount(){
-    window.$('.ui.modal').modal({detachable: false});
-  }
-  render(){
-    return(
-      <div className="ui basic modal">
-        <i className="close icon"></i>
-        <div className="header">
-          Archive Old Messages
         </div>
-        <div className="image content">
-          <div className="image">
-            <i className="archive icon"></i>
-          </div>
-          <div className="description">
-            <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
-          </div>
-        </div>
-        <div className="actions">
-          <div className="two fluid ui inverted buttons">
-            <div className="ui red basic inverted button close">
-              <i className="remove icon"></i>
-              No
-            </div>
-            {/*<button type="submit" className="ui green basic inverted button">
-              <i className="checkmark icon"></i>
-              Yes
-            </button>*/}
-          </div>
-        </div>
-      </div>
+      </form>
     )
   }
 }

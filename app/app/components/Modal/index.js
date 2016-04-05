@@ -1,38 +1,38 @@
-// modal.jsx
-import React, { Component } from 'react';
-import Portal from 'react-portal';
+import React, {Component} from 'react'
 
-export class InnerModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { modalHeight: 0 };
+export default class Modal extends Component{
+  constructor(props){
+    super(props)
+    this.state = {isRender: this.props.isOpen}
   }
 
-  componentDidMount() {
-    let modalHeight = window.$('#reactInnerModal').modal('show');
-    this.setState({modalHeight: modalHeight});
+  componentDidMount(){
+    window.$('#formNewPatient')
+      .modal({detachable: false})
+      .modal('setting', 'closable', false)
+      .modal('show')
   }
 
-  render() {
-    return (
-      <div id='reactInnerModal' className='ui standard test modal transition visible active' style={{'margin-top': - this.state.modalHeight / 2}}>
-        <i className='close icon' onClick={this.props.closePortal}></i>
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
-export default class Modal extends Component {
-  render() {
-    let triggerButton = <button className='ui button'>Open Modal</button>;
-    return (
-      <Portal className='ui dimmer modals visible active page transition' openByClickOn={triggerButton} closeOnEsc={true} closeOnOutsideClick={true}>
-        <InnerModal>
-          {this.props.children}
-
-        </InnerModal>
-      </Portal>
-    );
+  render(){
+      if(this.props.isOpen){
+          return(
+          <div className="ui basic modal" id="formNewPatient">
+            <div className="header">Genial, paciente nuevo!</div>
+            <div className="image content">
+              <div className="image">
+                <i className="archive icon"></i>
+              </div>
+              <div className="description">
+                <h3>{this.props.dataState.name} {this.props.dataState.lastName}</h3>
+                <small>Se ha creado exitosamente!</small>
+              </div>
+            </div>
+            <div className="actions">
+              <button className="ui green basic button" onClick={this.props.closeModalClick}>Ok, gracias!</button>
+            </div>
+          </div>)
+        }else{
+          return null
+        }
   }
 }
