@@ -31,19 +31,44 @@ export class PatientsList extends Component{
 
   render(){
     return(
-        <ol>
-          {
-            this.state.patients.map( patient => {
-              return <Patient key={patient.id} data={patient}/>
-            })
-          }
-        </ol>
+        <table className="ui yellow table">
+          <PatienHeading/>
+          <tbody>
+            {
+              this.state.patients.map( patient => {
+                return <Patient key={patient.id} data={patient}/>
+              })
+            }
+          </tbody>
+
+        </table>
     )
   }
 }
 
+
 class Patient extends Component{
   render(){
-    return <li>{this.props.data.name} {this.props.data.lastName} | {this.props.data.email}</li>
+    return (
+      <tr>
+        <td>{this.props.data.name}</td>
+        <td>{this.props.data.lastName}</td>
+        <td>{this.props.data.email}</td>
+      </tr>
+    )
+  }
+}
+
+class PatienHeading extends Component{
+  render(){
+    return (
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>E-mail</th>
+        </tr>
+      </thead>
+    )
   }
 }

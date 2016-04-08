@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
-import Modal from '../../components/Modal'
-import $ from 'jquery'
-
+import React, {Component} from 'react';
+import Modal from '../../components/Modal';
+import $ from 'jquery';
+import Formsy from 'formsy-react';
 
 export default class NewPacient extends Component{
   render() {
     return <div className="ui centered grid">
       <div className="row">
-        <h1>Nuevos Pacientes</h1>
+        <h1>Nueva ficha de paciente</h1>
       </div>
       <div className="row">
-        <FormNewPatient url="/patient/create"/>
+        <FormNewPatient url="/patient"/>
       </div>
     </div>
   }
@@ -50,35 +50,35 @@ export class FormNewPatient extends Component{
       })
 
       this.setState({data: inputsName})
+
   }
 
   pullData(e){
     e.preventDefault();
 
     var url = this.props.url
-
-
     var data = this.state.data
 
     $.post(url, data)
     .success((res)=>{
       this.openModal()
     })
-    .error(function(XMLHttpRequest, textStatus, errorThrown){
-      console.log('no se pudo hacer el envío');
+    .error((XMLHttpRequest)=>{
+      console.log(XMLHttpRequest.responseJSON.invalidAttributes)
     })
   }
-
   render(){
     return(
-      <form className="ten wide column" onSubmit={this.pullData.bind(this)} onChange={this.changeDataState.bind(this)} id="form">
+      <form className="ten wide column"  onChange={this.changeDataState.bind(this)}
+      onSubmit={this.pullData.bind(this)}
+      id="form">
         <div className="ui form" id="picture">
           <h4 className="ui dividing header">Información personal del paciente</h4>
 
           <div className="two fields">
             <div className="field">
               <label>Nombre</label>
-              <input type="text" placeholder="Primer nombre" name="name"/>
+              <input type="text" placeholder="Nombre" name="name"/>
             </div>
             <div className="field">
               <label>Apellido</label>
@@ -87,9 +87,10 @@ export class FormNewPatient extends Component{
           </div>
           <div className="field">
             <label>E-mail</label>
-            <input type="email" placeholder="paciente@steticorp.com" name="email"/>
+            <input type="email" placeholder="paciente@steticorp.com" name="email" data-validate="email"/>
           </div>
-          <button type="submit" className="ui button olive">Crear nuevo paciente</button>
+
+          <button type="submit" className="ui button olive submit">Crear nuevo paciente</button>
           {
             this.state.isModalOpen ?
               <Modal

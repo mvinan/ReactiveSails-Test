@@ -5,7 +5,7 @@ import {Link} from 'react-router'
 export default class Menu extends Component{
   render() {
     return (
-      <ul {...this.props}>
+      <ul {...this.props} className="ui secondary pointing menu">
         {this.props.children}
       </ul>
     )
@@ -16,7 +16,7 @@ export class ItemList extends Component{
   render(){
     return(
       <li className="Menu-list">
-        <NavLink className="Menu-item" {...this.props}>
+        <NavLink className="Menu-item item" {...this.props}>
           {this.props.children}
         </NavLink>
       </li>

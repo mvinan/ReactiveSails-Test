@@ -16,20 +16,16 @@ export default class Modal extends Component{
   render(){
       if(this.props.isOpen){
           return(
-          <div className="ui basic modal" id="formNewPatient">
-            <div className="header">Genial, paciente nuevo!</div>
-            <div className="image content">
-              <div className="image">
-                <i className="archive icon"></i>
-              </div>
-              <div className="description">
-                <h3>{this.props.dataState.name} {this.props.dataState.lastName}</h3>
-                <small>Se ha creado exitosamente!</small>
-              </div>
+          <div className="ui basic grid centered modal" id="formNewPatient">
+
+            <div className="description">
+              <h3>{this.props.dataState.name} {this.props.dataState.lastName} se ha creado con exito!</h3>
             </div>
-            <div className="actions">
-              <button className="ui green basic button" onClick={this.props.closeModalClick}>Ok, gracias!</button>
+
+            <div className="actions middle aligned row">
+              <button className="ui labeled olive icon button" onClick={this.props.closeModalClick}> <i className="checkmark icon"></i> OK</button>
             </div>
+
           </div>)
         }else{
           return null

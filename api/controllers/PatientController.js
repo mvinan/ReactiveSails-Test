@@ -6,21 +6,18 @@
  */
 
 module.exports = {
-	create: function(req, res, next){
-		var userObj = {
-			name : req.param('name'),
-			lastName: req.param('lastName'),
-			email: req.param('email')
-		}
-		Patient.create(userObj, function(err, user){
-			if (err) {
-				return next(err)
-			}
-			return res.ok({
-				name: user.name,
-				lastName:user.lastName,
-				email: user.email
-			})
-		})
-	}
+
+	// create: function(req, res, next){
+	// 	var userObj = {
+	// 		name : req.param('name'),
+	// 		lastName: req.param('lastName'),
+	// 		email: req.param('email')
+	// 	}
+	// 	Patient.create(userObj, function(err, user){
+	// 		if (err) {
+	// 			return next(err)
+	// 		}
+	// 		return res.json(user)
+	// 	})
+	// }
 };
