@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+import PatientsList from '../../components/PatientList'
 
 export default React.createClass({
   render() {
     return (
       <div className="Home ui centered grid">
         <article className="ui aligned center thirteen wide column">
-          <h1>Buscar paciente</h1>
+          <h1>Buscar…</h1>
           <Form/>
         </article>
       </div>
@@ -65,54 +66,6 @@ class Form extends Component{
         }
         </div>
       </div>
-    )
-  }
-}
-
-export class PatientsList extends Component{
-  constructor(props){
-    super(props)
-  }
-  render(){
-    return(
-        <table className="ui yellow table">
-          <PatienHeading/>
-          <tbody>
-            {
-              this.props.data.map( patient => {
-                return <Patient key={patient.id} data={patient}/>
-              })
-            }
-          </tbody>
-
-        </table>
-    )
-  }
-}
-
-class Patient extends Component{
-  render(){
-    return (
-      <tr>
-        <td>{this.props.data.name}</td>
-        <td>{this.props.data.lastName}</td>
-        <td>{this.props.data.email}</td>
-      </tr>
-    )
-  }
-}
-
-class PatienHeading extends Component{
-  render(){
-    return (
-      <thead>
-        <tr>
-          <th>Nombres</th>
-          <th>Apellidos</th>
-          <th>E-mail</th>
-          <th></th>
-        </tr>
-      </thead>
     )
   }
 }
